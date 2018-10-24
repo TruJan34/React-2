@@ -1,0 +1,80 @@
+npx create-react-app react-tutorial
+cd react-tutorial
+npm start
+
+https://www.taniarascia.com/getting-started-with-react/
+
+Using JSX is not mandatory for writing React
+
+className is used instead of class for adding CSS classes, as class is a reserved keyword in JavaScript.
+Properties and methods in JSX are camelCase – onclick will become onClick.
+Self-closing tags must end in a slash – e.g. <img />
+
+capitalize custom components to differentiate them from regular HTML elements (Table class) 
+
+
+Day 2
+
+1. Class Component : A class component must include render(), and the return can only return one parent element.
+
+class ClassComponent extends Component {
+    render() {
+        return <div>Example</div>;
+    }
+}
+
+2. Simple Component : which is a function.
+
+const SimpleComponent = () => { 
+    return <div>Example</div>;
+}
+
+
+
+pass the data through to the child component (Table) with properties,
+kind of how you might pass data through using data- attributes. 
+We can call the property whatever we want, as long as it’s not a reserved keyword,
+so I’ll go with characterData.
+
+The data I’m passing through is the characters variable,
+and I’ll put curly braces around it as it’s a JavaScript expression.
+
+return (
+    <div className="container">
+        <Table characterData={characters} />
+    </div>
+);
+
+
+If you open up React DevTools and inspect the Table component, 
+you’ll see the array of data in the property. 
+The data that’s stored here is known as the virtual DOM, 
+which is a fast and efficient way of syncing data with the actual DOM.
+
+Props are an effective way to pass existing data to a React component, 
+however the component cannot change the props – they’re read-only
+
+
+props : we have a one way data flow, 
+state : we can update private data from a component.
+
+
+You must use this.setState() to modify an array. 
+Simply applying a new value to this.state.property will not work
+
+removeCharacter = index => {
+    const { characters } = this.state;
+
+    this.setState({
+        characters: characters.filter((character, i) => { 
+            return i !== index;
+        })
+    });
+}
+filter does not mutate but rather creates a new array,
+
+
+constructor():
+We’ll need the constructor() to use this, and to receive the props of the parent.
+
+
